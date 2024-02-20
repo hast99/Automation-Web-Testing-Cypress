@@ -1,0 +1,37 @@
+describe('Website Puma', () => {
+  it('Positive Case', () => {
+    cy.viewport(1366, 768)
+    cy.visit('https://id.puma.com/in/account/login?action=register')
+    cy.get('#dwfrm_profile_customer_firstname').type('Asep')
+    cy.get('input[name="dwfrm_profile_customer_lastname"]').type('Paijo')
+    cy.get('input[name="dwfrm_profile_customer_email"]').type('example1@yopmail.com')
+    cy.get('#dwfrm_profile_registration_password').type('WErkudoro99*')
+    cy.get('#dwfrm_profile_customer_phone').type('+6287665443233')
+    cy.get('.form-group-options > :nth-child(2)').click()
+    cy.get(':nth-child(8) > .btn').click()
+  })
+
+  it('Negative Case Invalid Email', () => {
+    cy.viewport(1366, 768)
+    cy.visit('https://id.puma.com/in/account/login?action=register')
+    cy.get('#dwfrm_profile_customer_firstname').type('Asep')
+    cy.get('input[name="dwfrm_profile_customer_lastname"]').type('Paijo')
+    cy.get('input[name="dwfrm_profile_customer_email"]').type('_____@example.com')
+    cy.get('#dwfrm_profile_registration_password').type('WErkudoro99*')
+    cy.get('#dwfrm_profile_customer_phone').type('+6287665443233')
+    cy.get('.form-group-options > :nth-child(2)').click()
+    cy.get(':nth-child(8) > .btn').click()
+  })
+
+  it('Negative Case Invalid Password', () => {
+    cy.viewport(1366, 768)
+    cy.visit('https://id.puma.com/in/account/login?action=register')
+    cy.get('#dwfrm_profile_customer_firstname').type('Asep')
+    cy.get('input[name="dwfrm_profile_customer_lastname"]').type('Paijo')
+    cy.get('input[name="dwfrm_profile_customer_email"]').type('example1@yopmail.com')
+    cy.get('#dwfrm_profile_registration_password').type('!@#$%^&*()')
+    cy.get('#dwfrm_profile_customer_phone').type('+6287665443233')
+    cy.get('.form-group-options > :nth-child(2)').click()
+    cy.get(':nth-child(8) > .btn').click()
+  })
+})
